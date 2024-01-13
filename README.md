@@ -3,6 +3,8 @@
 Generates a 2D maze and attempts to solve it automatically.
 
 Maze: S = start, E = end
+
+```
 # # # # # # # # # # # # # # # # # # # #
 #   #     #       #       #     #   # #
 #     # #   # # #       #             #
@@ -23,8 +25,10 @@ Maze: S = start, E = end
 #   # # #   # #     #                 #
 #           #               #         #
 # # # # # # # # # # # # # # # # # # # #
+```
 
 Solved: . = path, P = end position
+```
 # # # # # # # # # # # # # # # # # # # #
 #   #     #       #       #     #   # #
 #     # #   # # #       # . . . . . . #
@@ -45,3 +49,4 @@ Solved: . = path, P = end position
 #   # # #   # #     #                 #
 #           #               #         #
 # # # # # # # # # # # # # # # # # # # #
+```

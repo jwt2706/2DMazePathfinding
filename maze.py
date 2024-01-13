@@ -30,6 +30,33 @@ def create_maze():
     maze[random.randint(1, ROWS - 2)][random.randint(1, COLS - 2)] = END
     return maze
 
+# Perform breadth-first search to find the path
+def find_path(maze, start_pos, end_pos):
+    queue = deque([(start_pos, [])])
+    visited = set()
+
+    while queue:
+        curr_pos, path = queue.popleft()
+        row, col = curr_pos
+
+        if curr_pos == end_pos:
+            return path
+
+        for direction in [UP, DOWN, LEFT, RIGHT]:
+            if direction == UP and maze[row - 1][col] != WALL and (row - 1, col) not in visited:
+                queue.append(((row - 1, col), path + [UP]))
+                visited.add((row - 1, col))
+            elif direction == DOWN and maze[row + 1][col] != WALL and (row + 1, col) not in visited:
+                queue.append(((row + 1, col), path + [DOWN]))
+                visited.add((row + 1, col))
+            elif direction == LEFT and maze[row][col - 1] != WALL and (row, col - 1) not in visited:
+                queue.append(((row, col - 1), path + [LEFT]))
+                visited.add((row, col - 1))
+            elif direction == RIGHT and maze[row][col + 1] != WALL and (row, col + 1) not in visited:
+                queue.append(((row, col + 1), path + [RIGHT]))
+                visited.add((row, col + 1))
+    return None
+
 # Print the maze
 def print_maze(maze):
     for row in maze:
@@ -63,36 +90,8 @@ def find_start_position(maze):
             if maze[row][col] == START:
                 return (row, col)
 
-# Perform breadth-first search to find the path
-def find_path(maze, start_pos, end_pos):
-    queue = deque([(start_pos, [])])
-    visited = set()
-
-    while queue:
-        curr_pos, path = queue.popleft()
-        row, col = curr_pos
-
-        if curr_pos == end_pos:
-            return path
-
-        for direction in [UP, DOWN, LEFT, RIGHT]:
-            if direction == UP and maze[row - 1][col] != WALL and (row - 1, col) not in visited:
-                queue.append(((row - 1, col), path + [UP]))
-                visited.add((row - 1, col))
-            elif direction == DOWN and maze[row + 1][col] != WALL and (row + 1, col) not in visited:
-                queue.append(((row + 1, col), path + [DOWN]))
-                visited.add((row + 1, col))
-            elif direction == LEFT and maze[row][col - 1] != WALL and (row, col - 1) not in visited:
-                queue.append(((row, col - 1), path + [LEFT]))
-                visited.add((row, col - 1))
-            elif direction == RIGHT and maze[row][col + 1] != WALL and (row, col + 1) not in visited:
-                queue.append(((row, col + 1), path + [RIGHT]))
-                visited.add((row, col + 1))
-
-    return None
-
-# Play the maze game
-def play_maze_game():
+# Run the game
+def main():
     maze = create_maze()
     print_maze(maze)
     player_pos = find_start_position(maze)
@@ -117,5 +116,5 @@ def play_maze_game():
     maze[end_pos[0]][end_pos[1]] = END
     print("Game Over")
 
-# Start the maze game
-play_maze_game()
+# Start
+main()

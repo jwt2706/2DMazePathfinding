@@ -2,8 +2,8 @@ import random
 from collections import deque
 
 # Maze dimensions
-ROWS = 25
-COLS = 25
+ROWS = 20
+COLS = 20
 
 # Maze symbols
 WALL = '#'
